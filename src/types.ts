@@ -31,30 +31,31 @@ export type ResponsiveValue<Value, B extends BaseTheme['breakpoints']> =
 
 export type SafeVariants<T> = Omit<T, keyof KnownBaseTheme>;
 
+interface ThemeValueFnParams<Theme extends BaseTheme> {
+  value: Theme[keyof Theme];
+  theme: Theme;
+  themeKey?: keyof Theme;
+}
+
+export interface ThemeValueFn<Theme extends BaseTheme> {
+  (params: ThemeValueFnParams<Theme>): Theme[keyof Theme];
+}
+
 export interface KnownBaseTheme {
   colors: {
-    [key: string]:
-      | string
-      | StyleTransformFunction<BaseTheme, undefined, string>;
+    [key: string]: string | ThemeValueFn<BaseTheme>;
   };
   spacing: {
-    [key: string]:
-      | number
-      | string
-      | StyleTransformFunction<BaseTheme, undefined, number | string>;
+    [key: string]: number | string | ThemeValueFn<BaseTheme>;
   };
   breakpoints?: {
     [key: string]: Breakpoint;
   };
   zIndices?: {
-    [key: string]:
-      | number
-      | StyleTransformFunction<BaseTheme, undefined, number>;
+    [key: string]: number | ThemeValueFn<BaseTheme>;
   };
   borderRadii?: {
-    [key: string]:
-      | number
-      | StyleTransformFunction<BaseTheme, undefined, number>;
+    [key: string]: number | ThemeValueFn<BaseTheme>;
   };
 }
 

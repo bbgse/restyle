@@ -1,19 +1,26 @@
 import createRestyleFunction from '../createRestyleFunction';
-import {BaseTheme, RNStyle, StyleTransformFunction} from '../types';
+import {BaseTheme, RNStyle, ThemeValueFn} from '../types';
 
-const sizeMap = {
-  sm: 8,
-  md: 16,
-  lg: 24,
+const remToPx: ThemeValueFn<BaseTheme> = params => sizes[params.value] * 16;
+
+const sizes = {
+  xs: 0.75,
+  sm: 0.825,
+  md: 1,
+  lg: 1.125,
+  xl: 1.25,
+  xxl: 1.5,
 };
-
-const colorResolver: StyleTransformFunction<BaseTheme, undefined, string> = x =>
-  sizeMap[x.value];
 
 const theme = {
   colors: {},
   spacing: {
-    sm: colorResolver,
+    xs: remToPx,
+    sm: remToPx,
+    md: remToPx,
+    lg: remToPx,
+    xl: remToPx,
+    xxl: remToPx,
   },
   opacities: {
     invisible: 0,
@@ -103,9 +110,9 @@ describe('createRestyleFunction', () => {
         property: 'width',
         themeKey: 'spacing',
       });
-      expect(styleFunc.func({width: 'sm'}, {theme, dimensions})).toStrictEqual({
-        width: 8,
-      });
+      const actual = styleFunc.func({width: 'md'}, {theme, dimensions});
+      const expected = {width: 16};
+      expect(actual).toStrictEqual(expected);
     });
 
     describe('with themeKey', () => {
