@@ -58,6 +58,22 @@ const theme: BaseTheme = {
       height: 50,
     },
   },
+  insetVariants: {
+    full: {
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+    },
+    vertical: {
+      top: 0,
+      bottom: 0,
+    },
+    horizontal: {
+      left: 0,
+      right: 0,
+    },
+  },
 };
 const dimensions = {
   width: 375,
@@ -228,5 +244,18 @@ describe('createVariant', () => {
       fontWeight: 'bold',
       color: '#111111',
     });
+  });
+
+  it('allows for custom prop names', () => {
+    const variant = createVariant({
+      themeKey: 'insetVariants',
+      property: 'inset',
+    });
+    const actual = variant.func(
+      {inset: 'full'},
+      {theme, dimensions: {width: 375, height: 1024}},
+    );
+    const expected = {top: 0, bottom: 0, left: 0, right: 0};
+    expect(actual).toStrictEqual(expected);
   });
 });
