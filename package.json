@@ -1,5 +1,5 @@
 {
-  "name": "@shopify/restyle",
+  "name": "@bbgse/restyle",
   "version": "2.4.3",
   "license": "MIT",
   "description": "A system for building constraint-based UI components",
@@ -19,14 +19,10 @@
     "run-android": "cd fixture && yarn react-native run-android",
     "deploy:documentation": "gh-pages -d documentation/build"
   },
-  "publishConfig": {
-    "access": "public",
-    "@shopify:registry": "https://registry.npmjs.org"
-  },
   "author": "Shopify Inc.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Shopify/restyle.git"
+    "url": "git+https://github.com/bbgse/restyle.git"
   },
   "devDependencies": {
     "@shopify/eslint-plugin": "^42.1.0",
