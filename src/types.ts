@@ -33,19 +33,28 @@ export type SafeVariants<T> = Omit<T, keyof KnownBaseTheme>;
 
 export interface KnownBaseTheme {
   colors: {
-    [key: string]: string;
+    [key: string]:
+      | string
+      | StyleTransformFunction<BaseTheme, undefined, string>;
   };
   spacing: {
-    [key: string]: number | string;
+    [key: string]:
+      | number
+      | string
+      | StyleTransformFunction<BaseTheme, undefined, number | string>;
   };
   breakpoints?: {
     [key: string]: Breakpoint;
   };
   zIndices?: {
-    [key: string]: number;
+    [key: string]:
+      | number
+      | StyleTransformFunction<BaseTheme, undefined, number>;
   };
   borderRadii?: {
-    [key: string]: number;
+    [key: string]:
+      | number
+      | StyleTransformFunction<BaseTheme, undefined, number>;
   };
 }
 

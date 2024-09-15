@@ -21,10 +21,15 @@ export function getThemeValue<
 ) {
   if (transform) return transform({value, theme, themeKey});
   if (isThemeKey(theme, themeKey)) {
-    if (value && theme[themeKey][value as string] === undefined)
+    const themeValue = theme[themeKey][value as string];
+    if (value && themeValue === undefined)
       throw new Error(
         `Value '${value}' does not exist in theme['${String(themeKey)}']`,
       );
+
+    if (typeof themeValue === 'function') {
+      return themeValue({value, theme, themeKey});
+    }
 
     return value ? theme[themeKey][value as string] : value;
   }
