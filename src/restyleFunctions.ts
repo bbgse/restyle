@@ -223,25 +223,25 @@ export const position = [
   }),
 ];
 
-export const border = [
-  ...getKeys(borderProperties).map(property => {
-    return createRestyleFunction({
-      property,
-    });
-  }),
-  ...getKeys(borderColorProperties).map(property => {
-    return createRestyleFunction({
-      property,
-      themeKey: 'colors',
-    });
-  }),
-  ...getKeys(borderRadiusProperties).map(property => {
-    return createRestyleFunction({
-      property,
-      themeKey: 'borderRadii',
-    });
-  }),
-];
+export const border = getKeys(borderProperties).map(property => {
+  return createRestyleFunction({
+    property,
+  });
+});
+
+export const borderColor = getKeys(borderColorProperties).map(property => {
+  return createRestyleFunction({
+    property,
+    themeKey: 'colors',
+  });
+});
+
+export const borderRadius = getKeys(borderRadiusProperties).map(property => {
+  return createRestyleFunction({
+    property,
+    themeKey: 'borderRadii',
+  });
+});
 
 export const shadow = [
   ...getKeys(shadowProperties).map(property => {
@@ -272,12 +272,14 @@ export const all = [
   opacity,
   backgroundColor,
   backgroundColorShorthand,
+  border,
+  borderColor,
+  borderRadius,
   ...spacing,
   ...spacingShorthand,
   ...typography,
   ...layout,
   ...position,
-  ...border,
   ...shadow,
   ...textShadow,
 ];
