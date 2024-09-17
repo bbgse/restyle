@@ -1,6 +1,6 @@
 {
   "name": "@bbgse/restyle",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "license": "MIT",
   "description": "A system for building constraint-based UI components",
   "main": "dist/index.js",
